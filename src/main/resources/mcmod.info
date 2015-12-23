@@ -1,0 +1,16 @@
+[
+{
+  "modid": "mininghelmet",
+  "name": "Mining Helmet",
+  "description": "A simple mod that adds a Mining Helmet which lights up the blocks around wherever you are looking",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["gegy1000"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
