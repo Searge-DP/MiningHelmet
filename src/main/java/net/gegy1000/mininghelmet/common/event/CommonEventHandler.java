@@ -24,30 +24,33 @@ public class CommonEventHandler
         {
             MovingObjectPosition mop = rayTrace(player, 20, 1.0F);
 
-            if (!(mop.typeOfHit == MovingObjectPosition.MovingObjectType.MISS))
+            if (mop != null)
             {
-                BlockPos pos;
+                if (!(mop.typeOfHit == MovingObjectPosition.MovingObjectType.MISS))
+                {
+                    BlockPos pos;
 
-                if (mop.typeOfHit == MovingObjectPosition.MovingObjectType.ENTITY)
-                {
-                    pos = mop.entityHit.getPosition();
-                }
-                else
-                {
-                    pos = mop.getBlockPos();
-                    pos = pos.offset(mop.sideHit);
-                }
-
-                if (player.worldObj.getBlockState(pos).getBlock() == MiningHelmet.light_block)
-                {
-                    TileLight tileLight = (TileLight) player.worldObj.getTileEntity(pos);
-                    tileLight.ticks = 0;
-                }
-                else
-                {
-                    if (player.worldObj.isAirBlock(pos))
+                    if (mop.typeOfHit == MovingObjectPosition.MovingObjectType.ENTITY)
                     {
-                        player.worldObj.setBlockState(pos, MiningHelmet.light_block.getDefaultState());
+                        pos = mop.entityHit.getPosition();
+                    }
+                    else
+                    {
+                        pos = mop.getBlockPos();
+                        pos = pos.offset(mop.sideHit);
+                    }
+
+                    if (player.worldObj.getBlockState(pos).getBlock() == MiningHelmet.light_block)
+                    {
+                        TileLight tileLight = (TileLight) player.worldObj.getTileEntity(pos);
+                        tileLight.ticks = 0;
+                    }
+                    else
+                    {
+                        if (player.worldObj.isAirBlock(pos))
+                        {
+                            player.worldObj.setBlockState(pos, MiningHelmet.light_block.getDefaultState());
+                        }
                     }
                 }
             }
